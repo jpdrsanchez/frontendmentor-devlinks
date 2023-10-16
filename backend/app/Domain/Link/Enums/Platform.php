@@ -2,7 +2,8 @@
 
 namespace App\Domain\Link\Enums;
 
-enum LinkType: string {
+enum Platform: string
+{
     case GITHUB = 'github';
     case FRONTEND_MENTOR = 'frontendMentor';
     case TWITTER = 'twitter';

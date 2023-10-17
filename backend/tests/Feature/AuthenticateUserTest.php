@@ -2,7 +2,7 @@
 
 use App\Domain\User\Models\User;
 
-test( 'example', function () {
+it( 'should be able to authenticate a existing user', function () {
     $user = User::factory()->create();
 
     $response = $this->postJson( '/api/v1/login', [

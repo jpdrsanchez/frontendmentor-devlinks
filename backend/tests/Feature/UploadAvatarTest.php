@@ -1,25 +1,22 @@
 <?php
 
-use App\Domain\Assets\Jobs\GenerateThumbnailsJob;
-use App\Domain\Assets\Models\Asset;
 use Illuminate\Http\UploadedFile;
 
-test('example', function () {
-    $file = UploadedFile::fake()->image('avatar.jpg', 800, 600)->size(2000);
+afterAll( function () {
+    if ( is_dir( storage_path( 'app/testing' ) ) ) {
+        $files = glob( storage_path( 'app/testing' ) . "/*" );
+        foreach ( $files as $file ) {
+            if ( is_file( $file ) ) {
+                unlink( $file );
+            }
+        }
+    }
+} );
 
-    $response = $this->postJson('/api/v1/upload', ['file' => $file]);
+it( 'should be able to upload an user avatar', function () {
+    $file = UploadedFile::fake()->image( 'avatar.jpg', 800, 600 )->size( 2000 );
 
-    $response->dd();
+    $response = $this->postJson( '/api/v1/upload', [ 'file' => $file ] );
 
-    $response->assertStatus(201);
-
-    $filename = $file->store();
-    $asset = new Asset;
-    $asset->name = $filename;
-    $asset->mimetype = $file->getMimeType();
-    $asset->save();
-
-    GenerateThumbnailsJob::dispatchSync($asset);
-    $asset->refresh();
-    dd($asset);
-});
+    $response->assertStatus( 201 );
+} );

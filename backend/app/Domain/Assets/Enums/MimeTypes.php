@@ -2,7 +2,8 @@
 
 namespace App\Domain\Assets\Enums;
 
-enum MimeTypes: string {
+enum MimeTypes: string
+{
     case PNG = 'image/png';
     case JPEG = 'image/jpeg';
     case GIF = 'image/gif';

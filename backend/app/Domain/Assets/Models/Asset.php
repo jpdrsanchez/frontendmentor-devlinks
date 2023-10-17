@@ -6,7 +6,8 @@ use App\Domain\Assets\Enums\MimeTypes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-class Asset extends Model {
+class Asset extends Model
+{
     use HasUuids;
 
     /**

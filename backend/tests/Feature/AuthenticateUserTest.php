@@ -8,7 +8,6 @@ it('should be able to authenticate a existing user', function () {
     $response = $this->postJson('/api/v1/login', [
         'email' => $user->email,
         'password' => 'password',
-        'confirm_password' => 'password',
     ]);
 
     $response->assertStatus(200);
